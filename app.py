@@ -38,7 +38,7 @@ def name1():
                 dic[key]=value
         
         print(dic)
-    return render_template('player1.html')
+    return render_template('gameroom.html',data1=dic)
 
 @app.route('/name2',methods=['POST','GET'])
 def name2():
@@ -51,7 +51,7 @@ def name2():
     
         print(dic)
 
-    return render_template('player2.html')
+    return render_template('gameroom.html',data2=dic)
 
 @app.route('/playdetails',methods=['POST','GET'])
 def playdetails():
@@ -64,7 +64,7 @@ def playdetails():
     
         print(dic)
 
-    return render_template('index.html')
+    return render_template('gameroom.html')
 
 
 
