@@ -19,6 +19,53 @@ app.secret_key = 'random string'
 def index():
     return render_template('index.html')
 
+@app.route('/player1')
+def player1():
+    return render_template('player1.html')
+
+@app.route('/player2')
+def player2():
+    return render_template('player2.html')
+
+
+@app.route('/name1',methods=['POST','GET'])
+def name1():
+    if request.method=='POST':
+
+        dic={}
+        for key,value in request.form.items():
+            if value!='':
+                dic[key]=value
+        
+        print(dic)
+    return render_template('player1.html')
+
+@app.route('/name2',methods=['POST','GET'])
+def name2():
+    if request.method=='POST':
+
+        dic={}
+        for key,value in request.form.items():
+            if value!='':
+                dic[key]=value
+    
+        print(dic)
+
+    return render_template('player2.html')
+
+@app.route('/playdetails',methods=['POST','GET'])
+def playdetails():
+    if request.method=='POST':
+
+        dic={}
+        for key,value in request.form.items():
+            if value!='':
+                dic[key]=value
+    
+        print(dic)
+
+    return render_template('index.html')
+
 
 
 
