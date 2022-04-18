@@ -36,24 +36,24 @@ def player1():
 def player2():
     return render_template('player2.html')
 
-@app.route('/gameroom')
-def gameroom():
-    return render_template('gameroom.html')
-
 
 
 
 @app.route('/name1',methods=['POST','GET'])
 def name1():
+    global playername1
+    global playername2
     if request.method=='POST':
 
         dic={}
         for key,value in request.form.items():
             if value!='':
                 dic[key]=value
+                playername1=value
+                playername2=''
         
         print(dic)
-    return render_template('gameroom.html',data1=dic)
+    return render_template('index.html',data1=playername1,data2=playername2)
 
 @app.route('/name2',methods=['POST','GET'])
 def name2():
@@ -63,26 +63,12 @@ def name2():
         for key,value in request.form.items():
             if value!='':
                 dic[key]=value
+                playername2=value
+
     
         print(dic)
 
-    return render_template('gameroom.html',data2=dic)
-
-@app.route('/playdetails',methods=['POST','GET'])
-def playdetails():
-    if request.method=='POST':
-
-        dic={}
-        for key,value in request.form.items():
-            if value!='':
-                dic[key]=value
-        #To change the pile stone count to integer
-        for k in dic:
-            if k!='first':
-                dic[k]=int(dic[k])
-        
-
-    return render_template('gameroom.html',details=dic)
+    return render_template('index.html',data1=playername1,data2=playername2)
 
 
 

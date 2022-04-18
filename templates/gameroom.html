@@ -12,56 +12,13 @@
 <body>
     <h1> GAME ROOM</h1>
 
-   {% if details %}
-    <div class="mainbox" name="mainbox">
-
-        <div class="pile1">
-            {% for value in range(details['pile1']) %}
-              <span class="pile1"></span></br>
-            {% endfor %}
-          <h2>Pile 1</h2>
-        </div>
-        
-        <div class="emptyspace">
-        </div>
-        
-        <div class="pile2">
-            {% for value in range(details['pile2']) %}
-            <span class="pile2"></span></br>
-          {% endfor %}
-          <h2>Pile 2</h2>
-        </div>
-        
-        <div class="emptyspace">
-        </div>
-        
-        
-        <div class="pile3">
-            {% for value in range(details['pile3']) %}
-            <span class="pile3"></span></br>
-          {% endfor %}
-          <h2>Pile 3</h2>
-        </div>
-        </div>
-
-        {% else %}
-
-        {% with msg = get_flashed_messages() %}
-        {% if msg %}
-           {% for info in msg %}
-              {{ info }}
-           {% endfor %}
-        {% endif %}
-     {% endwith %}
-  
-  {% endif %}
-
-
+   <p>(1)__ (2)__ (3)__ (4)__ (5)__ (6)__ (7)__ (8)__ (9)__ (10)__ (11)__</p>
+    
     {% if data1 %}
     <table>
         <tr>
             <td>Player 1 : </td>
-            <td>{{data1['name1']}}</td>
+            <td>{{data1}}</td>
         </tr>
     </table>
 
@@ -83,7 +40,7 @@
     <table>
         <tr>
             <td>Player 2 : </td>
-            <td>{{data2['name2']}}</td>
+            <td>{{data2}}</td>
         </tr>
     </table>
 
