@@ -16,58 +16,6 @@
     <h2>Surya Narayanan N S</h2>
     <h2>UTA ID : 1001877873</h2>
 
-    <h1> GAME ROOM</h1>
-
-   <p>(1)__ (2)__ (3)__ (4)__ (5)__ (6)__ (7)__ (8)__ (9)__ (10)__ (11)__</p>
-    
-    {% if data1 %}
-    <table>
-        <tr>
-            <td>Player 1 : </td>
-            <td>{{data1}}</td>
-        </tr>
-    </table>
-
-    {% else %}
-
-    {% with msg = get_flashed_messages() %}
-    {% if msg %}
-       {% for info in msg %}
-          {{ info }}
-       {% endfor %}
-    {% endif %}
- {% endwith %}
-
-{% endif %}
-    
-
-
-    {% if data2 %}
-    <table>
-        <tr>
-            <td>Player 2 : </td>
-            <td>{{data2}}</td>
-        </tr>
-    </table>
-
-    {% else %}
-
-    {% with msg = get_flashed_messages() %}
-    {% if msg %}
-       {% for info in msg %}
-          {{ info }}
-       {% endfor %}
-    {% endif %}
- {% endwith %}
-
-{% endif %}
-
-<script src="https://js.pusher.com/4.2/pusher.min.js"></script>
-
-    
-
-
-    <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
     
 </body>
 </html>
