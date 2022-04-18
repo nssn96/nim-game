@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/gameroom.css')}}">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <title>Game-room</title>
 </head>
 <body>
     <h1> GAME ROOM</h1>
 
-
+   {% if details %}
     <div class="mainbox" name="mainbox">
 
         <div class="pile1">
-            {% for value in range(3) %}
+            {% for value in range(details['pile1']) %}
               <span class="pile1"></span></br>
             {% endfor %}
           <h2>Pile 1</h2>
@@ -24,7 +26,7 @@
         </div>
         
         <div class="pile2">
-            {% for value in range(5) %}
+            {% for value in range(details['pile2']) %}
             <span class="pile2"></span></br>
           {% endfor %}
           <h2>Pile 2</h2>
@@ -35,12 +37,24 @@
         
         
         <div class="pile3">
-            {% for value in range(2) %}
+            {% for value in range(details['pile3']) %}
             <span class="pile3"></span></br>
           {% endfor %}
           <h2>Pile 3</h2>
         </div>
         </div>
+
+        {% else %}
+
+        {% with msg = get_flashed_messages() %}
+        {% if msg %}
+           {% for info in msg %}
+              {{ info }}
+           {% endfor %}
+        {% endif %}
+     {% endwith %}
+  
+  {% endif %}
 
 
     {% if data1 %}
@@ -50,17 +64,20 @@
             <td>{{data1['name1']}}</td>
         </tr>
     </table>
+
     {% else %}
 
-      {% with msg = get_flashed_messages() %}
-      {% if msg %}
-         {% for info in msg %}
-            {{ info }}
-         {% endfor %}
-      {% endif %}
-   {% endwith %}
+    {% with msg = get_flashed_messages() %}
+    {% if msg %}
+       {% for info in msg %}
+          {{ info }}
+       {% endfor %}
+    {% endif %}
+ {% endwith %}
 
 {% endif %}
+    
+
 
     {% if data2 %}
     <table>
@@ -69,19 +86,20 @@
             <td>{{data2['name2']}}</td>
         </tr>
     </table>
+
     {% else %}
 
-      {% with msg = get_flashed_messages() %}
-      {% if msg %}
-         {% for info in msg %}
-            {{ info }}
-         {% endfor %}
-      {% endif %}
-   {% endwith %}
+    {% with msg = get_flashed_messages() %}
+    {% if msg %}
+       {% for info in msg %}
+          {{ info }}
+       {% endfor %}
+    {% endif %}
+ {% endwith %}
 
 {% endif %}
 
-
+<script src="https://js.pusher.com/4.2/pusher.min.js"></script>
     
 </body>
 </html>

@@ -1,15 +1,24 @@
 # Name : Surya Narayanan Nadhamuni Suresh
 # UTA ID : 1001877873
 
-from flask import Flask,render_template, request,url_for,flash
+from flask import Flask, redirect,render_template, request,url_for,flash,jsonify,json
+from pusher import pusher
+from flask_socketio import SocketIO, send,emit
 
 
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 app.secret_key = 'random string'
 
 
+@socketio.on('my event')
+def handle_my_custom_event(data):
+    print('received data: ' + str(data))
 
+@socketio.on('my event')
+def handle_my_custom_event(data):
+    emit('my response', data,broadcast=True)
 
 
 
@@ -26,6 +35,12 @@ def player1():
 @app.route('/player2')
 def player2():
     return render_template('player2.html')
+
+@app.route('/gameroom')
+def gameroom():
+    return render_template('gameroom.html')
+
+
 
 
 @app.route('/name1',methods=['POST','GET'])
@@ -61,14 +76,18 @@ def playdetails():
         for key,value in request.form.items():
             if value!='':
                 dic[key]=value
-    
-        print(dic)
+        #To change the pile stone count to integer
+        for k in dic:
+            if k!='first':
+                dic[k]=int(dic[k])
+        
 
-    return render_template('gameroom.html')
+    return render_template('gameroom.html',details=dic)
 
 
 
 
 
 if __name__ == "__main__":
-    app.run()
+    #app.run()
+    socketio.run(app)
